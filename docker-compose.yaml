@@ -1,0 +1,7 @@
+version: "3.9"
+services:
+  keyfinder-front-master:
+    image: registry.dev.itland-sy.com/keyfinder/landing:master
+    ports:
+      - 6561:3000
+    network_mode: bridge
