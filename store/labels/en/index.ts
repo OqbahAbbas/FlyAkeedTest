@@ -1,4 +1,3 @@
-import errors from './errors'
 import global from './global'
 import dashboard from './pages/dashboard'
 import header from './layout/header'
@@ -15,7 +14,6 @@ const labels = {
 		header,
 		footer,
 	},
-	errors,
 }
 
 export default labels
