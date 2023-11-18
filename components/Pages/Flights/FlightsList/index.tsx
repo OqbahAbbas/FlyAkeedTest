@@ -8,7 +8,7 @@ const FlightsLit = () => {
 	return (
 		<Container>
 			{flights.map(flight => (
-				<FlightCard flight={flight} key={flight.flightID} />
+				<FlightCard flight={flight} key={flight.flightNumber} />
 			))}
 		</Container>
 	)
