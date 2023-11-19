@@ -79,7 +79,7 @@ const CloseButton = styled(Button)`
 			}
 		}
 
-		padding: 14px;
+		padding: 8px;
 	}
 `
 

@@ -147,6 +147,7 @@ const Container = styled.div`
 		border-radius: 3px;
 		cursor: pointer;
 		position: relative;
+		align-self: stretch;
 
 		.dateTitle {
 			font-size: 14px;

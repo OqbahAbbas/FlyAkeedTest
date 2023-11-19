@@ -16,10 +16,13 @@ const StyledButton = styled(Button)`
 	margin-left: 8px;
 	text-transform: none !important;
 	border-radius: 0;
-	height: 100%;
 	width: 120px;
 	color: ${({ theme }) => theme.colors.white};
 	font-size: 12px;
+
+	${({ theme }) => theme.adaptive.md} {
+		width: auto;
+	}
 `
 
 export default CorporateButton

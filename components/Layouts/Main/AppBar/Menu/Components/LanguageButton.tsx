@@ -27,7 +27,6 @@ const StyledButton = styled(Button)`
 	margin-left: 8px;
 	text-transform: none !important;
 	border-radius: 45%;
-	height: 100%;
 	color: ${({ theme }) => theme.colors.white} !important;
 	font-size: 12px;
 
