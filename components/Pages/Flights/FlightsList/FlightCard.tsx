@@ -140,6 +140,11 @@ const Container = styled.div`
 	border-radius: 3px;
 	margin-bottom: 20px;
 	padding: 20px 0;
+
+	${({ theme }) => theme.adaptive.md} {
+		grid-auto-flow: row;
+		grid-template-columns: 1fr;
+	}
 `
 
 const MainInfo = styled.div`
@@ -148,6 +153,11 @@ const MainInfo = styled.div`
 	grid-template-columns: 25% 50% 25%;
 	gap: 12px;
 	padding: 10px 20px;
+
+	${({ theme }) => theme.adaptive.md} {
+		grid-auto-flow: row;
+		grid-template-columns: 1fr;
+	}
 
 	.company {
 		display: grid;
@@ -171,6 +181,11 @@ const MainInfo = styled.div`
 		grid-auto-flow: row;
 		align-items: center;
 		justify-content: start;
+
+		${({ theme }) => theme.adaptive.md} {
+			justify-content: center;
+			text-align: center;
+		}
 
 		.schedule {
 			display: grid;
@@ -238,6 +253,10 @@ const Price = styled.div`
 	padding: 10px 20px 0;
 	border-left: 1px dashed #c1c1c1;
 
+	${({ theme }) => theme.adaptive.md} {
+		border-left: none;
+	}
+
 	.price {
 		display: grid;
 		grid-auto-flow: column;
@@ -279,6 +298,10 @@ const Price = styled.div`
 		}
 		[fill] {
 			fill: #e8efff !important;
+		}
+
+		${({ theme }) => theme.adaptive.md} {
+			display: none;
 		}
 	}
 `

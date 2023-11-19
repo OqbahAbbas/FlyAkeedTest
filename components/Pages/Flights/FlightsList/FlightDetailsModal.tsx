@@ -254,7 +254,8 @@ const SegmentContainer = styled.div`
 const StyledDialog = styled(Dialog)`
 	.${paperClasses.root} {
 		border-radius: 12px;
-		min-width: 800px;
+		width: 90%;
+		max-width: 800px;
 	}
 
 	.body {
@@ -300,6 +301,12 @@ const Footer = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	padding: 10px 24px 28px;
+
+	${({ theme }) => theme.adaptive.md} {
+		grid-auto-flow: row;
+		grid-template-columns: 1fr;
+		gap: 24px;
+	}
 
 	.seats {
 		display: grid;
