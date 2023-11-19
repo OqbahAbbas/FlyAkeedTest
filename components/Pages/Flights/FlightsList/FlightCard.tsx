@@ -11,8 +11,13 @@ import { ReactComponent as ArrowLeft } from '@svg/pages/flights/arrowLeft.svg'
 import { Button, buttonBaseClasses } from '@mui/material'
 import convertToTime from '@utils/basic/convertToTime'
 import convertToTimeFormat from '@utils/basic/convertToTimeFormat'
-import { CheapestPriceAtom } from '@atoms/Flight'
+import { CheapestPriceAtom, FlightDetailsAtom } from '@atoms/Flight'
 import { useEffect, useState } from 'react'
+import AirportService from '@api/Models/Airport'
+import { Snackbar } from '@admixltd/admix-component-library/Snackbar'
+import { setRecoil } from '@admixltd/admix-component-library/RecoilNexus'
+import dynamic from 'next/dynamic'
+import { getModal } from '@helpers/HooksNexus'
 
 const FlightCard = ({ flight }: { flight: Flight }) => {
 	const { card } = useRecoilValue(LabelsAtom).pages.flights.list
@@ -22,10 +27,46 @@ const FlightCard = ({ flight }: { flight: Flight }) => {
 	const { currency } = query ?? 'SAR'
 	const cheapestPrice = useRecoilValue(CheapestPriceAtom)
 	const [cheapest, setCheapest] = useState(false)
+	const [loading, setLoading] = useState(false)
+
+	const getAirports = async () => {
+		setLoading(true)
+		const { segments } = flight ?? {}
+		const airports: string[] = []
+		segments.forEach(segment => {
+			airports.push(segment.from)
+			airports.push(segment.to)
+		})
+		const uniqueAirPorts = [...new Set(airports)]
+		const request = await AirportService.airportDetails({
+			airline_code: uniqueAirPorts.join(','),
+		})
+
+		if (!request || 'error' in request) {
+			Snackbar.error(card.price.fetchError)
+			setLoading(false)
+			return
+		}
+
+		setRecoil(FlightDetailsAtom, request)
+		setLoading(false)
+		getFlightDetailsModal()
+	}
+
+	const getFlightDetailsModal = () => {
+		const FlightDetailsModa = dynamic(
+			() => import('@components/Pages/Flights/FlightsList/FlightDetailsModal')
+		)
+		getModal()?.showModal(FlightDetailsModa, { flight })
+	}
 
 	useEffect(() => {
 		setCheapest(Number(flight.price) === Number(cheapestPrice))
 	}, [cheapestPrice, flight])
+
+	const openFlightDetails = async () => {
+		await getAirports()
+	}
 
 	return (
 		<Container>
@@ -75,8 +116,13 @@ const FlightCard = ({ flight }: { flight: Flight }) => {
 						}
 					</span>
 				</div>
-				<Button variant="contained" color="primary">
-					{card.price.select}
+				<Button
+					variant="contained"
+					color="primary"
+					onClick={openFlightDetails}
+					disabled={loading}
+				>
+					{loading ? card.price.loading : card.price.select}
 				</Button>
 				<AddIcon className="top" />
 				<AddIcon className="bottom" />

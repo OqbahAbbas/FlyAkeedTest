@@ -1,4 +1,5 @@
 import { SomeObject } from '@admixltd/admix-component-library'
+import { AirportDetail } from '@api/Models/Airport/types'
 import { Flight } from '@api/Models/Flight/types'
 import { atom } from 'recoil'
 
@@ -22,4 +23,9 @@ export const CheapestPriceAtom = atom<string>({
 export const AirlinesAtom = atom<SomeObject<{ en: string; ar: string }>>({
 	key: `${prefix}airlines`,
 	default: {},
+})
+
+export const FlightDetailsAtom = atom<AirportDetail>({
+	key: `${prefix}flightDetails`,
+	default: {} as AirportDetail,
 })
