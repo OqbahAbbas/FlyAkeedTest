@@ -85,13 +85,14 @@ const FlightCard = ({ flight }: { flight: Flight }) => {
 						{locale === 'ar' && <ArrowLeft />}
 						{convertToTime(flight.arrTime)}
 					</div>
+					<div className="airports">
+						{flight.from}
+						<div />
+						{flight.to}
+					</div>
 					<div className="duration">
 						{convertToTimeFormat(flight.duration)}
 						{card.mainInfo.timeSection.duration.stop(Number(flight.stops))}
-					</div>
-					<div className="flightNumber">
-						{flight.marketCode}
-						{flight.flightNumber}
 					</div>
 				</div>
 				<div className="seats">
@@ -138,7 +139,6 @@ const Container = styled.div`
 	width: 100%;
 	background: ${({ theme }) => theme.colors.white};
 	border-radius: 3px;
-	margin-bottom: 20px;
 	padding: 20px 0;
 
 	${({ theme }) => theme.adaptive.md} {
@@ -204,6 +204,15 @@ const MainInfo = styled.div`
 				fill: #b8b8b8 !important;
 				stroke-width: 2px;
 			}
+		}
+
+		.airports {
+			display: grid;
+			grid-auto-flow: column;
+			align-items: center;
+			gap: 16px;
+			font-size: 15px;
+			color: ##4d4e4e;
 		}
 
 		.duration {

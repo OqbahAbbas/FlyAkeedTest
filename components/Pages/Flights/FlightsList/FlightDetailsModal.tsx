@@ -78,7 +78,7 @@ const Modal = (props: ModalProps) => {
 												{sourceTranslation.country}
 											</div>
 										</div>
-										<div className="segmentSection">
+										<div className="segmentSection middle">
 											<div className="company">
 												<FlightCompany />
 											</div>
@@ -190,6 +190,11 @@ const SegmentContainer = styled.div`
 		text-align: center;
 		justify-content: center;
 		align-items: center;
+
+		&.middle {
+			border-left: 1px dashed #b8b8b8 !important;
+			border-right: 1px dashed #b8b8b8 !important;
+		}
 
 		.airportCode {
 			font-size: 24px;

@@ -20,6 +20,10 @@ const StyledButton = styled(Button)`
 	width: 120px;
 	color: ${({ theme }) => theme.colors.primary};
 	font-size: 12px;
+
+	${({ theme }) => theme.adaptive.md} {
+		width: auto;
+	}
 `
 
 export default LoginButton

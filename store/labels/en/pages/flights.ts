@@ -2,6 +2,33 @@ import pluralize from 'pluralize'
 
 const flights = {
 	list: {
+		filters: {
+			stop: 'Stop',
+			airlines: 'Airlines',
+			price: {
+				label: 'Price',
+				sar: 'SAR',
+				usd: 'USD',
+			},
+			departureTime: {
+				label: 'Departure Time',
+				times: {
+					midNight: '12:00 MN - 4:59 AM',
+					morning: '05:00 AM - 11:59 AM',
+					midDay: '12:00 NN - 4:59 PM',
+					night: '05:00 PM - 11:59 PM',
+				},
+			},
+			journyDuration: 'Journy Duration',
+			flights: {
+				label: 'Flights',
+				Cheapest: 'Cheapest',
+				available: 'Available',
+			},
+		},
+		showNonDirect: 'Show Non-Direct Flights',
+		HideNonDirect: 'Hide Non-Direct Flights',
+		title: (num: number) => `Departure Flight (${num}) ${pluralize('Result', num)}`,
 		card: {
 			price: {
 				select: 'Select',
