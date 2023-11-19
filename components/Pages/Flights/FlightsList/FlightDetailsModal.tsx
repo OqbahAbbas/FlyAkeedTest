@@ -112,9 +112,6 @@ const Modal = (props: ModalProps) => {
 												{destinationTranslation.name}
 											</div>
 											<div className="extraData">
-												{destinationTranslation.name}
-											</div>
-											<div className="extraData">
 												{destinationTranslation.address},{' '}
 												{destinationTranslation.country}
 											</div>
