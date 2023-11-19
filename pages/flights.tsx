@@ -5,17 +5,36 @@ import MainLayout from '@components/Layouts/Main'
 import initialPropsWrapper from '@helpers/initialPropsWrapper'
 import { NextPageWithProps } from '@interfaces/NextPage'
 import FlightService, { FlightSearch } from '@api/Models/Flight'
+import { useRecoilValue } from 'recoil'
 import { AirlinesAtom, CheapestFlightAtom, CheapestPriceAtom, FlightsAtom } from '@atoms/Flight'
 import FlightsList from '@components/Pages/Flights/FlightsList'
+import { Snackbar } from '@admixltd/admix-component-library/Snackbar'
+import LabelsAtom from '@atoms/Labels'
+import { getRouter } from '@helpers/RouterNexus'
+import pages from '@constants/pages'
+import { useEffect } from 'react'
 
-const Page: NextPageWithProps = () => (
-	<>
-		<Meta />
-		<Container>
-			<FlightsList />
-		</Container>
-	</>
-)
+const Page: NextPageWithProps = () => {
+	const { noFlights } = useRecoilValue(LabelsAtom).pages.flights
+	const router = getRouter()
+	const flights = useRecoilValue(FlightsAtom)
+
+	useEffect(() => {
+		if (flights.length === 0) {
+			Snackbar.error(noFlights)
+			router.push(pages.dashboard.url)
+		}
+	}, [])
+
+	return (
+		<>
+			<Meta />
+			<Container>
+				<FlightsList />
+			</Container>
+		</>
+	)
+}
 
 const Container = styled(BaseContainer)`
 	display: flex;

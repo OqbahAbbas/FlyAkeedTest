@@ -1,6 +1,7 @@
 import pluralize from 'pluralize'
 
 const flights = {
+	noFlights: 'No recommended flights for this route',
 	list: {
 		filters: {
 			stop: 'Stop',

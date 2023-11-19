@@ -1,4 +1,5 @@
 const flights = {
+	noFlights: 'لا يوجد رحلات مقترحة',
 	list: {
 		filters: {
 			stop: 'توقف',
