@@ -47,6 +47,7 @@ const Container = styled.div`
 	grid-auto-flow: column;
 	grid-template-columns: 25% 75%;
 	justify-content: center;
+	align-items: start;
 
 	${({ theme }) => theme.adaptive.md} {
 		grid-auto-flow: row;
